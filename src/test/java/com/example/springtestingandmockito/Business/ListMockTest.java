@@ -3,6 +3,7 @@ package com.example.springtestingandmockito.Business;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -103,5 +104,51 @@ public class ListMockTest {
     }
 
     //Multiple argument capture for if a method is called multiple times.
+
+    //Taking a look at Spy
+
+    @Test
+    public void mocking() {
+        ArrayList arrayListMock = mock(ArrayList.class);
+        System.out.println(arrayListMock.get(0));//null
+        System.out.println(arrayListMock.size());//0
+        arrayListMock.add("Test");
+        arrayListMock.add("Test2");
+        System.out.println(arrayListMock.size());//0
+        when(arrayListMock.size()).thenReturn(5);
+        System.out.println(arrayListMock.size());//5
+    }
+
+    /*
+    when you create a spy, the original behavior of the list is retained, and you can stop specific methods.
+    So the original behavior is retained and whichever things which you override, those things will get
+    the characteristics that you specified or here.
+     */
+
+    @Test
+    public void spying() {
+        ArrayList arrayListSpy = spy(ArrayList.class);
+        arrayListSpy.add("Test0");
+        System.out.println(arrayListSpy.get(0));//Test0
+        System.out.println(arrayListSpy.size());//1
+        arrayListSpy.add("Test");
+        arrayListSpy.add("Test2");
+        System.out.println(arrayListSpy.size());//3
+
+        when(arrayListSpy.size()).thenReturn(5);
+        System.out.println(arrayListSpy.size());//5
+
+        arrayListSpy.add("Test4");
+        System.out.println(arrayListSpy.size());//5
+
+        verify(arrayListSpy).add("Test4");
+        //You can call verify on spy tests
+    }
+
+    //You let the action happen but keep an eye on it, creating a controlled environment
+
+
+
+
 
 }
