@@ -147,6 +147,22 @@ public class ListMockTest {
 
     //You let the action happen but keep an eye on it, creating a controlled environment
 
+    /*
+    Mockito is a mocking framework for Java. Mockito allows convenient creation of substitutes of real objects for testing purposes.
+
+    Mockito Limitations:
+        Cannot mock constructors
+        Cannot mock static methods
+        Cannot mock equals(), hashCode(), considered bad practise. Can be done with legacy code.
+
+    What values do mocks return by default?
+
+        In order to be transparent and unobtrusive all Mockito mocks by default return 'nice' values. For example: zeros, falseys, empty
+        collections or nulls. Refer to javadocs about stubbing to see exactly what values are returned by default.
+
+
+     */
+
 
 
 
